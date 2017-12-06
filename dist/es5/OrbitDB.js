@@ -178,10 +178,12 @@ var OrbitDB = function () {
         await accessController.load(options.accessControllerAddress);
       }
 
+      var cache = await this._loadCache(this.directory, address);
+
       var opts = (0, _assign2.default)({ replicate: true }, options, {
         accessController: accessController,
         keystore: this.keystore,
-        cache: this._cache
+        cache: cache
       });
 
       var store = new Store(this._ipfs, this.id, address, opts);
@@ -410,9 +412,7 @@ var OrbitDB = function () {
     value: async function _loadCache(directory, dbAddress) {
       var cache = void 0;
       try {
-        var cacheFilePath = path.join(dbAddress.root, dbAddress.path);
-        cache = new Cache(path.join(directory), cacheFilePath);
-        await cache.load();
+        cache = await Cache.load(directory, dbAddress);
       } catch (e) {
         logger.warn("Couldn't load Cache:", e);
       }

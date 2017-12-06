@@ -102,10 +102,12 @@ class OrbitDB {
       await accessController.load(options.accessControllerAddress)
     }
 
+    const cache = await this._loadCache(this.directory, address)
+
     const opts = Object.assign({ replicate: true }, options, { 
       accessController: accessController, 
       keystore: this.keystore,
-      cache: this._cache,
+      cache: cache,
     })
 
     const store = new Store(this._ipfs, this.id, address, opts)
@@ -309,9 +311,7 @@ class OrbitDB {
   async _loadCache (directory, dbAddress) {
     let cache
     try {
-      const cacheFilePath = path.join(dbAddress.root, dbAddress.path)
-      cache = new Cache(path.join(directory), cacheFilePath)
-      await cache.load()
+      cache = await Cache.load(directory, dbAddress)
     } catch (e) {
       logger.warn("Couldn't load Cache:", e)
     }

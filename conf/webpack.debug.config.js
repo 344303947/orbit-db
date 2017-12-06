@@ -25,7 +25,10 @@ module.exports = {
     modules: [
       'node_modules',
       path.resolve(__dirname, '../node_modules')
-    ]
+    ],
+    alias: {
+      leveldown: 'level-js',
+    },
   },
   resolveLoader: {
     modules: [

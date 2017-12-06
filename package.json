@@ -12,20 +12,21 @@
     "node": ">=8.0.0"
   },
   "browser": {
-    "fs-pull-blob-store": "idb-pull-blob-store"
+    "leveldown": "level-js"
   },
   "main": "src/OrbitDB.js",
   "dependencies": {
     "logplease": "^1.2.14",
     "multihashes": "^0.4.12",
-    "orbit-db-cache": "~0.0.7",
+    "orbit-db-cache": "orbitdb/orbit-db-cache#feat/leveldb",
     "orbit-db-counterstore": "~1.0.0",
     "orbit-db-docstore": "~1.0.1",
     "orbit-db-eventstore": "~1.0.0",
     "orbit-db-feedstore": "~1.0.0",
     "orbit-db-keystore": "~0.0.2",
     "orbit-db-kvstore": "~1.0.0",
-    "orbit-db-pubsub": "~0.3.6"
+    "orbit-db-pubsub": "~0.3.6",
+    "orbit-db-store": "orbitdb/orbit-db-store#feat/leveldb"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",

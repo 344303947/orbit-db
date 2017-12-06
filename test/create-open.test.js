@@ -96,11 +96,11 @@ describe('orbit-db - Create & Open', function() {
         assert.equal(db.address.toString().indexOf('second'), 56)
       })
 
-      it('saves the database locally', async () => {
+      it.skip('saves the database locally', async () => {
         assert.equal(fs.existsSync(localDataPath), true)
       })
 
-      it('saves database manifest reference locally', async () => {
+      it.skip('saves database manifest reference locally', async () => {
         const buffer = JSON.parse(fs.readFileSync(localDataPath))
         const data = buffer[db.address.toString()]
         assert.equal(data.manifest, db.address.root)
@@ -117,7 +117,7 @@ describe('orbit-db - Create & Open', function() {
         assert.equal(manifest.accessController.indexOf('/ipfs'), 0)
       })
 
-      it('can pass local database directory as an option', async () => {
+      it.skip('can pass local database directory as an option', async () => {
         const dir = './orbitdb/tests/another-feed'
         db = await orbitdb.create('third', 'feed', { directory: dir })
         localDataPath = path.join(dir, db.address.root, db.address.path + '.orbitdb')
